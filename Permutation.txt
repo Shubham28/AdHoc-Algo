@@ -1,0 +1,30 @@
+//	Using Recursion
+
+Permute(int start, input [])
+{
+	if (start == input.length) {
+		sysout(input);
+		return;
+	}
+
+	for (int i = start; i < input.length; i++) {
+		swap(input[i], input[start]);
+		Permute(start + 1, input);
+	}
+}
+
+The following algorithm prints all the permutations of a string, in lexicographic order.
+Start by sorting the string and printing that as the first permutation.  Now, find the next permutation as follows:
+
+•	Let i be the last index such that input[i] < input[i + 1]
+•	If there is no such index, then we’re done.
+
+•	Let j be the last index such that input[i] < input[j]
+•	Swap input[i] with input[j]
+•	Reverse input[i + 1] through input[input.length - 1]
+
+For example, after “abcd *g* kji *h* fe” comes “abcd *h* ef *g* ijk”. 
+
+This algorithm works on strings that contain duplicate letters;
+It will only print each distinct permutation once.  But if you replace either < with <= ,
+that case will throw you into an infinite loop.
